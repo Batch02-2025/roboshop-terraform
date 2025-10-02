@@ -20,7 +20,7 @@ apps = {
   frontend = {
     subnet_ref      = "web"
     instance_type   = "t3.small"
-    allow_port      = 80, 443
+    allow_port      = 80
     allow_sg_cidr   = ["10.10.0.0/24", "10.10.1.0/24"]
 
   }
@@ -29,38 +29,61 @@ apps = {
     subnet_ref      = "app"
     instance_type   = "t3.small"
     allow_port      = 8080
-    allow_sg_cidr   = ["10.10.0.0/24", "10.10.1.0/24"]
+    allow_sg_cidr   = ["10.10.4.0/24", "10.10.5.0/24"]
   }
 
   user = {
     subnet_ref      = "app"
     instance_type   = "t3.small"
     allow_port      = 8080
-    allow_sg_cidr   = ["10.10.0.0/24", "10.10.1.0/24"]
+    allow_sg_cidr   = ["10.10.4.0/24", "10.10.5.0/24"]
   }
 
   cart = {
     subnet_ref      = "app"
     instance_type   = "t3.small"
     allow_port      = 8080
-    allow_sg_cidr   = ["10.10.0.0/24", "10.10.1.0/24"]
+    allow_sg_cidr   = ["10.10.4.0/24", "10.10.5.0/24"]
   }
 
   shipping = {
     subnet_ref      = "app"
     instance_type   = "t3.small"
     allow_port      = 8080
-    allow_sg_cidr   = ["10.10.0.0/24", "10.10.1.0/24"]
+    allow_sg_cidr   = ["10.10.4.0/24", "10.10.5.0/24"]
   }
 
   payment = {
     subnet_ref      = "app"
     instance_type   = "t3.small"
     allow_port      = 8080
-    allow_sg_cidr   = ["10.10.0.0/24", "10.10.1.0/24"]
+    allow_sg_cidr   = ["10.10.4.0/24", "10.10.5.0/24"]
   }
 }
 
 db ={
-
+  mongo = {
+    subnet_ref      = "db"
+    instance_type   = "t3.small"
+    allow_port      = 27017
+    allow_sg_cidr   = ["10.10.4.0/24", "10.10.5.0/24"]
+  }
+  mysql = {
+    subnet_ref      = "db"
+    instance_type   = "t3.small"
+    allow_port      = 3306
+    allow_sg_cidr   = ["10.10.4.0/24", "10.10.5.0/24"]
+  }
+  rabbitmq = {
+    subnet_ref      = "db"
+    instance_type   = "t3.small"
+    allow_port      = 5672
+    allow_sg_cidr   = ["10.10.4.0/24", "10.10.5.0/24"]
+  }
+  redis = {
+    subnet_ref      = "db"
+    instance_type   = "t3.small"
+    allow_port      = 6379
+    allow_sg_cidr   = ["10.10.4.0/24", "10.10.5.0/24"]
+  }
 }
