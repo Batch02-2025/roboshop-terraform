@@ -25,6 +25,7 @@ module "apps" {
   subnet_id         = module.vpc.subnets[each.value["subnet_ref"]]
   vpc_id            = module.vpc.vpc_id
   env               = var.env
+  capacity          = each.value["capacity"]
 }
 
 module "db" {

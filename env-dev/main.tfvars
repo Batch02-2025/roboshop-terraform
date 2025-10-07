@@ -22,7 +22,11 @@ apps = {
     instance_type   = "t3.small"
     allow_port      = 80
     allow_sg_cidr   = ["10.10.0.0/24", "10.10.1.0/24"]
-
+    capacity        = {
+      desired = 1
+      max     = 1
+      min     = 1
+    }
   }
 
   catalouge = {
@@ -30,6 +34,11 @@ apps = {
     instance_type   = "t3.small"
     allow_port      = 8080
     allow_sg_cidr   = ["10.10.4.0/24", "10.10.5.0/24"]
+    capacity        = {
+      desired = 1
+      max     = 1
+      min     = 1
+    }
   }
 
   user = {
@@ -37,6 +46,11 @@ apps = {
     instance_type   = "t3.small"
     allow_port      = 8080
     allow_sg_cidr   = ["10.10.4.0/24", "10.10.5.0/24"]
+    capacity        = {
+      desired = 1
+      max     = 1
+      min     = 1
+    }
   }
 
   cart = {
@@ -44,6 +58,11 @@ apps = {
     instance_type   = "t3.small"
     allow_port      = 8080
     allow_sg_cidr   = ["10.10.4.0/24", "10.10.5.0/24"]
+    capacity        = {
+      desired = 1
+      max     = 1
+      min     = 1
+    }
   }
 
   shipping = {
@@ -51,6 +70,11 @@ apps = {
     instance_type   = "t3.small"
     allow_port      = 8080
     allow_sg_cidr   = ["10.10.4.0/24", "10.10.5.0/24"]
+    capacity        = {
+      desired = 1
+      max     = 1
+      min     = 1
+    }
   }
 
   payment = {
@@ -58,6 +82,11 @@ apps = {
     instance_type   = "t3.small"
     allow_port      = 8080
     allow_sg_cidr   = ["10.10.4.0/24", "10.10.5.0/24"]
+    capacity        = {
+      desired = 1
+      max     = 1
+      min     = 1
+    }
   }
 }
 
