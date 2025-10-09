@@ -8,3 +8,4 @@ variable "capacity" {}
 variable "instance_type" {}
 variable "env" {}
 variable "subnet_id" {}
+variable "bastion_node" {}

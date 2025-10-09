@@ -7,7 +7,7 @@ resource "aws_security_group" "main" {
 
 resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
   security_group_id = aws_security_group.main.id
-  cidr_ipv4         = "0.0.0.0/0"
+  cidr_ipv4         = var.bastion_node
   from_port         = 22
   to_port           = 22
   ip_protocol       = "tcp"
@@ -19,7 +19,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_port" {
   security_group_id = aws_security_group.main.id
   from_port         = each.value
   to_port           = each.value
-  cidr_blocks       = var.allow_sg_cidr
+  cidr_ipv4         = var.allow_sg_cidr
   ip_protocol       = "TCP"
   description       = "${var.name}-allow-port"
 }
@@ -49,7 +49,7 @@ resource "aws_launch_template" "main" {
 }
 
 resource "aws_autoscaling_group" "main" {
-  name                = "${var/name}-${var.env}-asg"
+  name                = "${var.name}-${var.env}-asg"
   desired_capacity    = var.capacity["desired"]
   max_size            = var.capacity["max"]
   min_size            = var.capacity["min"]
