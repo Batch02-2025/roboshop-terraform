@@ -19,7 +19,7 @@ resource "aws_vpc_security_group_ingress_rule" "allow_port" {
   security_group_id = aws_security_group.main.id
   from_port         = each.value
   to_port           = each.value
-  cidr_blocks       = var.allow_sg_cidr
+  cidr_ipv4         = var.allow_sg_cidr
   ip_protocol       = "TCP"
   description       = "${var.name}-allow-port"
 }
