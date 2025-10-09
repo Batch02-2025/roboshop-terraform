@@ -18,11 +18,12 @@ vpc = {
 apps = {
 
   frontend = {
-    subnet_ref      = "web"
-    instance_type   = "t3.small"
-    allow_port      = 80
-    allow_sg_cidr   = ["10.10.0.0/24", "10.10.1.0/24"]
-    capacity        = {
+    subnet_ref       = "web"
+    instance_type    = "t3.small"
+    allow_port       = 80
+    allow_sg_cidr    = ["10.10.0.0/24", "10.10.1.0/24"]
+    allow_lb_sg_cidr = ["0.0.0.0/0"]
+    capacity         = {
       desired = 1
       max     = 1
       min     = 1
@@ -34,6 +35,7 @@ apps = {
     instance_type   = "t3.small"
     allow_port      = 8080
     allow_sg_cidr   = ["10.10.4.0/24", "10.10.5.0/24"]
+    allow_lb_sg_cidr = ["10.10.2.0/24", "10.10.3.0/24", "10.10.4.0/24", "10.10.5.0/24"]
     capacity        = {
       desired = 1
       max     = 1
@@ -46,6 +48,7 @@ apps = {
     instance_type   = "t3.small"
     allow_port      = 8080
     allow_sg_cidr   = ["10.10.4.0/24", "10.10.5.0/24"]
+    allow_lb_sg_cidr = ["10.10.2.0/24", "10.10.3.0/24", "10.10.4.0/24", "10.10.5.0/24"]
     capacity        = {
       desired = 1
       max     = 1
@@ -58,6 +61,7 @@ apps = {
     instance_type   = "t3.small"
     allow_port      = 8080
     allow_sg_cidr   = ["10.10.4.0/24", "10.10.5.0/24"]
+    allow_lb_sg_cidr = ["10.10.2.0/24", "10.10.3.0/24", "10.10.4.0/24", "10.10.5.0/24"]
     capacity        = {
       desired = 1
       max     = 1
@@ -70,6 +74,7 @@ apps = {
     instance_type   = "t3.small"
     allow_port      = 8080
     allow_sg_cidr   = ["10.10.4.0/24", "10.10.5.0/24"]
+    allow_lb_sg_cidr = ["10.10.2.0/24", "10.10.3.0/24", "10.10.4.0/24", "10.10.5.0/24"]
     capacity        = {
       desired = 1
       max     = 1
@@ -82,6 +87,7 @@ apps = {
     instance_type   = "t3.small"
     allow_port      = 8080
     allow_sg_cidr   = ["10.10.4.0/24", "10.10.5.0/24"]
+    allow_lb_sg_cidr = ["10.10.2.0/24", "10.10.3.0/24", "10.10.4.0/24", "10.10.5.0/24"]
     capacity        = {
       desired = 1
       max     = 1
@@ -114,5 +120,29 @@ db ={
     instance_type   = "t3.small"
     allow_port      = 6379
     allow_sg_cidr   = ["10.10.4.0/24", "10.10.5.0/24"]
+  }
+}
+
+load_balancer = {
+  private = {
+    internal = ture
+    load_balancer_type = "application"
+    allow_lb_sg_cidr = ["10.10.2.0/24", "10.10.3.0/24", "10.10.4.0/24", "10.10.5.0/24"]
+    subnet_ref = "app"
+    listener_port = 80
+    listener_protocol = "HTTP"
+    ssl_policy        = "ELBSecurityPolicy-2016-08"
+    acm_https_arn     = null
+  }
+
+  public = {
+    internal = false
+    load_balancer_type = "application"
+    allow_lb_sg_cidr = ["0.0.0.0/0"]
+    subnet_ref = "public"
+    listener_port = 443
+    listener_protocol = "HTTPS"
+    ssl_policy        = "ELBSecurityPolicy-2016-08"
+    acm_https_arn     = "to be checked"
   }
 }

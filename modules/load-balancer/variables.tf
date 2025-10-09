@@ -1,0 +1,11 @@
+variable "vpc_id" {}
+variable "name" {}
+variable "allow_ports" {}
+variable "allow_sg_cidr" {}
+variable "internal" {}
+variable "env" {}
+variable "subnet_id" {}
+variable "listener_port" {}
+variable "listener_protocol" {}
+variable "ssl_policy" {}
+variable "acm_https_arn" {}
