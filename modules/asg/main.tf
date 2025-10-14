@@ -1,4 +1,4 @@
-
+# Security Group - ASG
 resource "aws_security_group" "main" {
   name          = "${var.name}-sg"
   description   = "${var.name}-sg"

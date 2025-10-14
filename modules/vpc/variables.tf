@@ -5,6 +5,6 @@ variable "availability_zone" {}
 variable "web_subnets" {}
 variable "app_subnets" {}
 variable "db_subnets" {}
-variable "default_vpc_cidr" {}
 variable "default_vpc_id" {}
 variable "default_rt_id" {}
+variable "default_vpc_cidr" {}

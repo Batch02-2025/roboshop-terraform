@@ -1,10 +1,10 @@
 data "aws_ami" "rhel9" {
   most_recent = true
-  owners      = ["309956199498"] # Red Hat official AWS account ID
+  owners = ["309956199498"] # Red Hat Official account id
 
   filter {
     name   = "name"
-    values = ["RHEL-9*"]   # broader match to catch variations
+    values = ["RHEL-9*"]
   }
 
   filter {
@@ -13,7 +13,7 @@ data "aws_ami" "rhel9" {
   }
 
   filter {
-    name   = "root-device-type"
+    name   = "root_block_device"
     values = ["ebs"]
   }
 
@@ -21,5 +21,5 @@ data "aws_ami" "rhel9" {
     name   = "virtualization-type"
     values = ["hvm"]
   }
-}
 
+}

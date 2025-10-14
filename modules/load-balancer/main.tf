@@ -29,7 +29,7 @@ resource "aws_vpc_security_group_egress_rule" "allow-egress" {
   to_port           = 0    # Allows all ports
 }
 
-# Load Balancer
+# Load Balancer creation
 resource "aws_lb" "main" {
   name               = "${var.name}-${var.env}-alb"
   internal           = var.internal

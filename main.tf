@@ -17,27 +17,25 @@ module "vpc" {
 module "apps" {
   source = "./modules/ec2"
 
-  for_each          = var.apps
-  name              = each.key
-  instance_type     = each.value["instance_type"]
-  allow_ports       = each.value["allow_ports"]
-  allow_sg_cidr     = each.value["allow_sg_cidr"]
-  subnet_id         = module.vpc.subnets[each.value["subnet_ref"]]
-  vpc_id            = module.vpc.vpc_id
-  env               = var.env
-  capacity          = each.value["capacity"]
+  for_each              = var.apps
+  name                  = each.key
+  instance_type         = each.value["instance_type"]
+  allow_port            = each.value["allow_port"]
+  allow_sg_cidr         = each.value["allow_sg_cidr"]
+  subnet_id             = module.vpc.subnets[each.value["subnet_ref"]]
+  vpc_id                = module.vpc.vpc_id
+  env                   = var.env
 }
 
 module "db" {
   source = "./modules/ec2"
 
-  for_each          = var.db
-  name              = each.key
-  instance_type     = each.value["instance_type"]
-  allow_ports       = each.value["allow_ports"]
-  allow_sg_cidr     = each.value["allow_sg_cidr"]
-  subnet_id         = module.vpc.subnets[each.value["subnet_ref"]]
-  vpc_id            = module.vpc.vpc_id
-  env               = var.env
-
+  for_each              = var.db
+  name                  = each.key
+  instance_type         = each.value["instance_type"]
+  allow_port            = each.value["allow_port"]
+  allow_sg_cidr         = each.value["allow_sg_cidr"]
+  subnet_id             = module.vpc.subnets[each.value["subnet_ref"]]
+  vpc_id                = module.vpc.vpc_id
+  env                   = var.env
 }
