@@ -2,7 +2,7 @@ name: Provision RoboShop Infrastrtucture
 on: [workflow_dispatch]
 jobs:
   Dev-Apply:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
 
