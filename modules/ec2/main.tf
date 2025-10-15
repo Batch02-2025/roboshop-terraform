@@ -21,8 +21,9 @@ resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
 
 # Ingress Rule 2
 resource "aws_vpc_security_group_ingress_rule" "allow_port" {
+  for_each          = var.allow_sg_cidr
   security_group_id = aws_security_group.main.id
-  cidr_ipv4         = var.allow_sg_cidr
+  cidr_ipv4         = each.value
   from_port         = var.allow_port
   to_port           = var.allow_port
   ip_protocol       = "tcp"
