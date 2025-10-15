@@ -1,4 +1,4 @@
-name: Provision RoboShop Infrastrtucture
+name: Provision RoboShop Infrastructure
 on: [workflow_dispatch]
 jobs:
   Dev-Apply:
