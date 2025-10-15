@@ -59,7 +59,7 @@ resource "aws_vpc_peering_connection" "main" {
   auto_accept   = true
 
   tags = {
-    Name = "VPC-peering-default_vpc-new${aws_vpc.main.tags}"
+    Name = "VPC-peering-default_vpc-new${aws_vpc.main.tags["Name"]}"
   }
 }
 
