@@ -13,7 +13,7 @@ data "aws_ami" "rhel9" {
   }
 
   filter {
-    name   = "root-device-type"
+    name   = "root_device_type"
     values = ["ebs"]
   }
 
