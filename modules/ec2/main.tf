@@ -45,7 +45,35 @@ resource "aws_instance" "main" {
   subnet_id               = var.subnet_id[0]
   vpc_security_group_ids  = [aws_security_group.main.id]
 
-  user_data = base64encode(file("${path.module}/userdata.sh")
+  user_data = <<-EOF
+  #!/bin/bash
+
+  # Update the System
+  sudo dnf update -y
+  sudo dnf upgrade -y
+
+  # Set hostname
+  sudo hostnamectl set-hostname "${var.name}" --static
+
+  # Download the latest EPEL release RPM for RHEL 9
+  sudo curl -O https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
+
+  # Install it manually
+  sudo rpm -ivh epel-release-latest-9.noarch.rpm
+
+  # Clean and refresh DNF
+  sudo dnf clean all
+  sudo dnf makecache
+
+  # Install Basic Utilities
+  sudo dnf install -y vim wget git unzip net-tools bind-utils telnet traceroute nmap htop tree bash-completion iputils
+
+  # Security & Networking Tools
+  sudo dnf install -y tcpdump openssl openssh-clients
+
+  # Reboot after setup
+  sudo reboot
+EOF
 
   tags = {
     Name = "${var.name}-${var.env}"
