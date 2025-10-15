@@ -1,0 +1,25 @@
+name: Destroy RoboShop Infrastructure
+on: [workflow_dispatch]
+jobs:
+  Dev-Destroy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: ap-south-1
+
+      # Install the latest Terraform version
+      - name: Install Terraform (latest)
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false   # optional, for raw CLI output
+
+      - name: Terraform init
+        run: terraform init -backend-config=env-dev/state.tfvars
+      - name: Terraform Destroy
+        run: terraform destroy -var-file=env-dev/main.tfvars -auto-approve
