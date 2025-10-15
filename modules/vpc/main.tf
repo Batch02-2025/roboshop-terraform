@@ -15,7 +15,7 @@ resource "aws_subnet" "public" {
   availability_zone = var.availability_zone[count.index]
 
   tags = {
-    Name = "public-subnet-${split(",",var.availability_zone[count.index])[2]}"
+    Name = "public-subnet-${split("-",var.availability_zone[count.index])[2]}"
   }
 }
 
@@ -26,7 +26,7 @@ resource "aws_subnet" "web" {
   availability_zone = var.availability_zone[count.index]
 
   tags = {
-    Name = "web-subnet-${split(",",var.availability_zone[count.index])[2]}"
+    Name = "web-subnet-${split("-",var.availability_zone[count.index])[2]}"
   }
 }
 
@@ -37,7 +37,7 @@ resource "aws_subnet" "app" {
   availability_zone = var.availability_zone[count.index]
 
   tags = {
-    Name = "app-subnet-${split(",",var.availability_zone[count.index])[2]}"
+    Name = "app-subnet-${split("-",var.availability_zone[count.index])[2]}"
   }
 }
 
@@ -48,7 +48,7 @@ resource "aws_subnet" "db" {
   availability_zone = var.availability_zone[count.index]
 
   tags = {
-    Name = "db-subnet-${split(",",var.availability_zone[count.index])[2]}"
+    Name = "db-subnet-${split("-",var.availability_zone[count.index])[2]}"
   }
 }
 
@@ -91,7 +91,7 @@ resource "aws_nat_gateway" "ngw" {
   subnet_id     = aws_subnet.public.*.id[count.index]
 
   tags = {
-    Name = "NGW-${split(",",var.availability_zone[count.index])[2]}"
+    Name = "NGW-${split("-",var.availability_zone[count.index])[2]}"
   }
 }
 
@@ -111,7 +111,7 @@ resource "aws_route_table" "public" {
   }
 
   tags = {
-    Name = "public-rt-${split(",",var.availability_zone[count.index])[2]}"
+    Name = "public-rt-${split("-",var.availability_zone[count.index])[2]}"
   }
 }
 
@@ -130,7 +130,7 @@ resource "aws_route_table" "web" {
   }
 
   tags = {
-    Name = "web-rt-${split(",",var.availability_zone[count.index])[2]}"
+    Name = "web-rt-${split("-",var.availability_zone[count.index])[2]}"
   }
 }
 
@@ -149,7 +149,7 @@ resource "aws_route_table" "app" {
   }
 
   tags = {
-    Name = "app-rt-${split(",",var.availability_zone[count.index])[2]}"
+    Name = "app-rt-${split("-",var.availability_zone[count.index])[2]}"
   }
 }
 
@@ -168,7 +168,7 @@ resource "aws_route_table" "db" {
   }
 
   tags = {
-    Name = "db-rt-${split(",",var.availability_zone[count.index])[2]}"
+    Name = "db-rt-${split("-",var.availability_zone[count.index])[2]}"
   }
 }
 
