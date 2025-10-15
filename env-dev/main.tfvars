@@ -1,5 +1,5 @@
 env               =  "dev"
-bastion_node      = "172.31.33.132/32"
+#bastion_node      = "172.31.33.132/32"
 
 
 vpc = {

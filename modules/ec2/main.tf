@@ -45,7 +45,7 @@ resource "aws_instance" "main" {
   subnet_id               = var.subnet_id[0]
   vpc_security_group_ids  = [aws_security_group.main.id]
 
-  user_data = base64encode(templatefile("${path.module}/userdata.sh"))
+  user_data = base64encode(file("${path.module}/userdata.sh")
 
   tags = {
     Name = "${var.name}-${var.env}"
